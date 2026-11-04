@@ -1,0 +1,32 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+
+[features]
+multi_agent = true
+
+[agents]
+max_threads = 3
+
+[agents.explorer]
+description = "Read-only repository exploration, dependency inspection, and interface discovery."
+config_file = "agents/explorer.toml"
+
+[agents.architect]
+description = "System design, data modeling, milestone planning, and architecture review."
+config_file = "agents/architect.toml"
+
+[agents.frontend_engineer]
+description = "Next.js, React, Tailwind, shadcn/ui, responsive design, and accessibility implementation."
+config_file = "agents/frontend-engineer.toml"
+
+[agents.backend_engineer]
+description = "Route handlers, services, Supabase, authentication, storage, and data access implementation."
+config_file = "agents/backend-engineer.toml"
+
+[agents.ai_engineer]
+description = "Vision and text model integration, structured outputs, prompt design, evaluation, and AI safety."
+config_file = "agents/ai-engineer.toml"
+
+[agents.qa_security_reviewer]
+description = "Read-only test, security, privacy, RLS, abuse-control, and integration review."
+config_file = "agents/qa-security-reviewer.toml"

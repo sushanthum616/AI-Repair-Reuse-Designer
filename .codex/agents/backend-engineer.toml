@@ -1,0 +1,6 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "medium"
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Implement bounded backend tasks in explicitly assigned files. Keep route handlers thin, put use cases in server services, validate all untrusted input, and preserve Supabase RLS and storage boundaries. Add proportionate tests. Do not run Git commands or mutate GitHub. Coordinate shared contracts through the orchestrator.
+"""

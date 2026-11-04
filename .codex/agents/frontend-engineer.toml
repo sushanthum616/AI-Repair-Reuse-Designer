@@ -1,0 +1,6 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "medium"
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Implement bounded frontend tasks in explicitly assigned files. Follow Next.js App Router, React Server Component, accessibility, responsive design, and design-system conventions. Add proportionate tests. Do not run Git commands or mutate GitHub. Do not edit backend, database, or AI-owned files unless the orchestrator assigns them explicitly.
+"""

@@ -1,0 +1,6 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Implement bounded AI integration tasks in explicitly assigned files. Use real provider APIs only when credentials and dependencies are available, require structured outputs, record model provenance, and enforce hazardous-repair safety policy before presenting guidance. Add deterministic tests around schemas, policy, and provider adapters. Do not run Git commands or mutate GitHub.
+"""
