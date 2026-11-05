@@ -4,7 +4,7 @@
 
 Primary development is Windows with WSL2 Ubuntu and VS Code. Run Git, Node.js, package-manager, Supabase CLI, and test commands inside Ubuntu so dependency paths and permissions match the application environment.
 
-M2 will pin Node.js, package-manager, framework, and tool versions. Until then, do not scaffold with floating `latest` versions or add dependencies merely to reserve them.
+The executable foundation pins Node.js 24.15.0 in `.nvmrc`, npm 11.12.1 through `packageManager`/engines, and Next.js 16.4.5 in the lockfile. Use `nvm use` and `npm ci`; do not replace exact application versions with floating `latest` ranges.
 
 Copy `.env.example` to an ignored local environment file only after the corresponding integration exists. Never paste credentials into issues, commits, prompts, logs, screenshots, test fixtures, or client-visible environment variables.
 
@@ -58,7 +58,7 @@ Do not push, open a pull request, merge, deploy, force-push, rewrite history, or
 
 ## 5. Testing expectations
 
-M2 will define exact scripts. The intended verification ladder is:
+The verification ladder is:
 
 1. Formatting and static analysis: formatter, lint, strict TypeScript, environment/schema validation.
 2. Unit/component tests: Vitest and React Testing Library.
@@ -68,6 +68,16 @@ M2 will define exact scripts. The intended verification ladder is:
 6. Build: production Next.js build and bundle-boundary checks.
 
 Run the smallest meaningful set while iterating, then the milestone-required set before completion. Do not claim a check passed unless its command completed successfully in the current repository state.
+
+The M2 baseline commands are:
+
+- `npm run format:check` — Prettier verification;
+- `npm run lint` — ESLint, including browser/server import boundaries;
+- `npm run typecheck` — strict TypeScript without emitting files;
+- `npm test` — Vitest and React Testing Library;
+- `npm run build` — optimized production build;
+- `npm run test:e2e` — production-build Playwright checks on desktop and mobile;
+- `npm run check` — format, lint, type, unit/component, and build sequence.
 
 Real-provider smoke tests are excluded from ordinary CI. They require configured credentials, explicit spending authorization, sanitized test assets, recorded model/version, and a cost/usage result. Deterministic fakes validate schemas and failures but are never represented as real inference.
 

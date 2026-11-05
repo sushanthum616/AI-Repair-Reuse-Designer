@@ -4,6 +4,8 @@ out/
 coverage/
 playwright-report/
 test-results/
+*.tsbuildinfo
+.eslintcache
 .env*
 !.env.example
 .supabase/

@@ -4,9 +4,9 @@ AI Repair & Reuse Designer is a planned full-stack application that helps people
 
 ## Current status
 
-Project initialization is complete at the documentation and Codex-configuration level. The application has not been scaffolded, no Supabase project has been created, no AI provider has been connected, and no deployment resources have been provisioned.
+M2 is complete. The repository now contains an executable Next.js application foundation with a responsive marketing experience, a clearly labeled public dashboard demo, a non-submitting authentication preview, reusable UI primitives, and automated unit, component, accessibility, responsive, and production-build checks.
 
-The next implementation task is M2: scaffold the Next.js application, establish the design system, and build the responsive application shell using static fixtures clearly labeled as fixtures.
+The next implementation task is M3: add local Supabase database, authentication, authorization, and account-lifecycle foundations. No Supabase project, AI provider, live upload path, or deployment resource exists yet.
 
 ## Planned stack
 
@@ -29,11 +29,42 @@ The architecture is a modular monolith. Browser code, domain policy, server use 
 - [Development workflow](DEVELOPMENT_WORKFLOW.md)
 - [Agent workflow](AGENTS.md)
 - [Initialization validation](docs/validation/2026-11-03-initialization.md)
+- [M2 foundation validation](docs/validation/2026-11-04-m2-foundation.md)
 - [University work area](docs/university/README.md)
 
 ## Local setup
 
-The executable setup steps will be added in M2 when the package manager, Next.js version, linting, formatting, and test commands are pinned. Environment variable names are documented in `.env.example`; do not place credentials in committed files.
+Use WSL2 Ubuntu. The repository pins Node.js 24.15.0, npm 11.12.1, and Next.js 16.4.5.
+
+```bash
+nvm install
+nvm use
+npm ci
+npm run dev
+```
+
+Before the first browser-test run in a fresh WSL installation, install Chromium and its Linux dependencies:
+
+```bash
+npx playwright install chromium
+sudo npx playwright install-deps chromium
+```
+
+Open `http://localhost:3000`. Available routes are:
+
+- `/` — responsive marketing and product-principle overview;
+- `/dashboard` — public product preview using deterministic fixture projects;
+- `/sign-in` — disabled authentication preview that does not send or store credentials.
+
+Useful verification commands:
+
+```bash
+npm run check
+npm run test:e2e
+npm audit --audit-level=moderate
+```
+
+Environment variable names are documented in `.env.example`; do not place credentials in committed files. M2 requires no secrets.
 
 ## Safety and privacy
 

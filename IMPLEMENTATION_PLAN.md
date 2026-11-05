@@ -13,7 +13,7 @@ Initialization baseline: November 3, 2026. No application code, cloud resources,
 | Milestone | Title | Primary agent | Dependencies | Status |
 |---|---|---|---|---|
 | M1 | Architecture, multi-agent setup, and project foundation | Main + Architect | None | Complete for initialization |
-| M2 | Next.js application, design system, and responsive UI | Frontend | M1 | Not started |
+| M2 | Next.js application, design system, and responsive UI | Frontend | M1 | Complete |
 | M3 | Supabase database, authentication, and authorization | Backend | M2 | Not started |
 | M4 | Project management and secure image uploads | Backend + Frontend | M3 | Not started |
 | M5 | Real AI image analysis and repair recommendations | AI + Backend | M4 | Not started |
@@ -53,7 +53,7 @@ Initialization baseline: November 3, 2026. No application code, cloud resources,
 
 **Test requirements:** Formatting, lint, typecheck, unit/component smoke tests, Playwright navigation/accessibility smoke, production build.
 
-**Status:** Not started.
+**Status:** Complete on November 4, 2026. The pinned Next.js foundation, responsive shells, deterministic fixture policy, import-boundary linting, reusable UI primitives, and Vitest/RTL/Playwright baselines are implemented. Formatting, lint, strict typecheck, unit/component tests, desktop/mobile accessibility and overflow checks, and the production build pass; evidence is recorded in `docs/validation/2026-11-04-m2-foundation.md`.
 
 ## M3 — Supabase database, authentication, and authorization
 
