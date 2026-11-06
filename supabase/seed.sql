@@ -1,0 +1,2 @@
+-- M3 intentionally starts with no application fixtures.
+-- Tests create isolated synthetic users and rows inside transactions.

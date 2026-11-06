@@ -19,7 +19,7 @@ export function SiteFooter() {
           <Link className="footer-link" href="/">
             Home
           </Link>
-          <Link className="footer-link" href="/dashboard">
+          <Link className="footer-link" href="/demo">
             Demo
           </Link>
           <Link className="footer-link" href="/sign-in">

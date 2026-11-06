@@ -3,12 +3,15 @@ node_modules/
 out/
 coverage/
 playwright-report/
+playwright-report-auth/
 test-results/
+playwright/.auth/
 *.tsbuildinfo
 .eslintcache
 .env*
 !.env.example
-.supabase/
+supabase/.branches/
+supabase/.temp/
 .vscode/
 .idea/
 .DS_Store

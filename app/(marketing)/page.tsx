@@ -73,7 +73,7 @@ export default function HomePage() {
                 and your taste—while you stay in control of every decision.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/dashboard" className={cn(buttonVariants({ size: "lg" }), "group")}>
+                <Link href="/demo" className={cn(buttonVariants({ size: "lg" }), "group")}>
                   Explore the product demo
                   <ArrowRight
                     aria-hidden="true"
@@ -244,7 +244,7 @@ export default function HomePage() {
               </p>
             </div>
             <Link
-              href="/dashboard"
+              href="/demo"
               className={cn(
                 buttonVariants({ variant: "default", size: "lg" }),
                 "shrink-0 bg-foreground text-background hover:bg-foreground/90",

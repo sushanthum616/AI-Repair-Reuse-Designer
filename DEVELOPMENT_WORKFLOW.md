@@ -69,7 +69,7 @@ The verification ladder is:
 
 Run the smallest meaningful set while iterating, then the milestone-required set before completion. Do not claim a check passed unless its command completed successfully in the current repository state.
 
-The M2 baseline commands are:
+The M2/M3 baseline commands are:
 
 - `npm run format:check` — Prettier verification;
 - `npm run lint` — ESLint, including browser/server import boundaries;
@@ -77,7 +77,15 @@ The M2 baseline commands are:
 - `npm test` — Vitest and React Testing Library;
 - `npm run build` — optimized production build;
 - `npm run test:e2e` — production-build Playwright checks on desktop and mobile;
+- `npm run db:start` — start the disposable local Supabase stack;
+- `npm run db:reset` — destructively rebuild only the local database from migrations;
+- `npm run test:db` — pgTAP grants, RLS, trigger, and lifecycle policy checks;
+- `npm run test:integration` — two-user local Auth, RLS, export, concurrency, and deletion integration;
+- `npm run test:e2e:auth` — local email-confirmation, recovery, export, password rotation, stale-session, and deletion journey;
+- `npm run db:types` — regenerate `types/database.ts` from the local migrated schema;
 - `npm run check` — format, lint, type, unit/component, and build sequence.
+
+Commands that need application credentials use `scripts/with-local-supabase.mjs`, which reads `supabase status -o env` into the child process without writing keys to disk. Start Docker and `npm run db:start` first. Do not use local development keys in a hosted environment.
 
 Real-provider smoke tests are excluded from ordinary CI. They require configured credentials, explicit spending authorization, sanitized test assets, recorded model/version, and a cost/usage result. Deterministic fakes validate schemas and failures but are never represented as real inference.
 

@@ -8,13 +8,20 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./", import.meta.url)),
+      "server-only": fileURLToPath(new URL("./tests/stubs/server-only.ts", import.meta.url)),
     },
   },
   test: {
     environment: "jsdom",
     setupFiles: ["./vitest.setup.ts"],
     include: ["**/*.{test,spec}.{ts,tsx}"],
-    exclude: ["tests/e2e/**", "node_modules/**", ".next/**"],
+    exclude: [
+      "tests/e2e/**",
+      "tests/e2e-auth/**",
+      "tests/integration/**",
+      "node_modules/**",
+      ".next/**",
+    ],
     coverage: {
       provider: "v8",
       reporter: ["text", "html"],

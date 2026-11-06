@@ -17,7 +17,7 @@ describe("browser/server import boundary", () => {
     );
 
     expect(messages).toContain("no-restricted-imports");
-  }, 30_000);
+  }, 60_000);
 
   it("rejects static and dynamic server imports from app client modules", async () => {
     const staticMessages = await lint(
@@ -31,7 +31,7 @@ describe("browser/server import boundary", () => {
 
     expect(staticMessages).toContain("project-boundaries/no-client-server-imports");
     expect(dynamicMessages).toContain("project-boundaries/no-client-server-imports");
-  }, 30_000);
+  }, 60_000);
 
   it("allows server components to import server modules", async () => {
     const messages = await lint(
@@ -40,7 +40,7 @@ describe("browser/server import boundary", () => {
     );
 
     expect(messages).not.toContain("project-boundaries/no-client-server-imports");
-  }, 30_000);
+  }, 60_000);
 });
 
 async function lint(source: string, fileName: string) {

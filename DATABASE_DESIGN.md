@@ -9,7 +9,16 @@
 - Prefer normalized relational columns for ownership, lifecycle, ordering, and policy lookups. Use `jsonb` only for bounded, schema-versioned provider details or flexible snapshots.
 - Every child relationship must preserve project ownership. Policies alone do not prevent forged cross-owner parent IDs; use composite ownership constraints or equivalent verified database functions.
 
-The column lists below are proposed, not migration-ready SQL. M3 will turn them into tested migrations and generated TypeScript types.
+The M3 baseline for `profiles`, `projects`, and `deletion_jobs` is implemented in `supabase/migrations/202611050001_m3_auth_foundation.sql` and reflected in `types/database.ts`. Those tables, the `begin_account_deletion()` RPC, grants, triggers, and policies are authoritative over the earlier proposal below. Entities scheduled for M4 and later remain design targets rather than deployed schema.
+
+The M3 migration also establishes these lifecycle invariants:
+
+- Auth signup creates exactly one private profile.
+- Authenticated clients can edit only explicitly granted user-authored columns.
+- Project ownership is derived from `auth.uid()` and cannot be reassigned by a client.
+- Every project write locks and verifies an active profile row, serializing writes against account deletion.
+- `begin_account_deletion()` creates one durable job and atomically marks the profile `deleting`.
+- Direct authenticated access to deletion jobs is denied; the server deletion coordinator cleans application data and removes the Auth identity only as its terminal step.
 
 ## 2. Core entities
 
@@ -18,6 +27,7 @@ The column lists below are proposed, not migration-ready SQL. M3 will turn them 
 - `id uuid primary key references auth.users(id) on delete cascade`
 - `display_name text`, `avatar_path text`, `locale text`, `skill_level text`
 - `preferences jsonb not null default '{}'`
+- `account_state active | deleting`, `deletion_requested_at timestamptz`, `deletion_operation_id uuid`
 - `created_at`, `updated_at timestamptz`
 
 One private profile per authenticated user.
@@ -157,13 +167,13 @@ Retention and maximum context windows are explicit. Messages do not contain prov
 
 A check requires at least one exact subject reference. Policy prevents referencing another user's subject.
 
-### `deletion_jobs`
+### `deletion_jobs` (M3 baseline)
 
-- `id uuid primary key`, `owner_id uuid`, optional `project_id uuid`
-- `scope text`, `status text`, `attempt_count integer`, `next_attempt_at timestamptz`
-- `last_error_code text`, `created_at`, `completed_at`
+- `id uuid primary key`, `owner_id uuid unique references auth.users(id)`
+- `status requested | cleaning | auth_deletion_pending | failed`
+- `attempt_count integer`, `last_error_code text`, `created_at`, `updated_at`
 
-Tracks retryable cleanup of private storage and pending operations after database state enters deleting.
+Tracks the retryable M3 account cleanup operation after the profile enters deleting. M4 extends the cleanup coordinator for private storage and may add lease/scheduling fields if asynchronous workers are selected.
 
 ## 6. Row Level Security policy model
 

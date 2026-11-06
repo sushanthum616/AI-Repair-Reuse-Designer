@@ -14,7 +14,7 @@ Initialization baseline: November 3, 2026. No application code, cloud resources,
 |---|---|---|---|---|
 | M1 | Architecture, multi-agent setup, and project foundation | Main + Architect | None | Complete for initialization |
 | M2 | Next.js application, design system, and responsive UI | Frontend | M1 | Complete |
-| M3 | Supabase database, authentication, and authorization | Backend | M2 | Not started |
+| M3 | Supabase database, authentication, and authorization | Backend | M2 | Complete |
 | M4 | Project management and secure image uploads | Backend + Frontend | M3 | Not started |
 | M5 | Real AI image analysis and repair recommendations | AI + Backend | M4 | Not started |
 | M6 | Creative remix studio and repair plan versioning | Frontend + Backend + AI | M5 | Not started |
@@ -69,7 +69,7 @@ Initialization baseline: November 3, 2026. No application code, cloud resources,
 
 **Test requirements:** Migration reset; database constraints; two-user RLS matrix including forged child ownership and server-authored fields; auth integration; export authorization/content; deleting-state mutation rejection; terminal Auth-removal behavior; protected-route Playwright flows; secret and browser-bundle checks.
 
-**Status:** Not started.
+**Status:** Complete on November 6, 2026. Local Supabase configuration, forward migration, generated types, request-scoped SSR clients, email-confirmed Auth/PKCE recovery, protected routes, profile settings, versioned export, deleting-state guards, and terminal Auth deletion are implemented. The pgTAP policy matrix, two-user integration suite, unit tests, production build, desktop/mobile browser checks, and full local account lifecycle pass; evidence is recorded in `docs/validation/2026-11-06-m3-auth-foundation.md`.
 
 ## M4 — Repair project management and secure image uploads
 

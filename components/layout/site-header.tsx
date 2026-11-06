@@ -34,7 +34,7 @@ export function SiteHeader() {
               </Link>
             </li>
             <li>
-              <Link className="nav-link" href="/dashboard">
+              <Link className="nav-link" href="/demo">
                 Demo dashboard
               </Link>
             </li>
